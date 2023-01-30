@@ -1,2 +1,20 @@
-﻿  Source.cpp
+﻿  Cotizacion.cpp
+  MainMenuPresenter.cpp
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(58,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(71,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(96,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(107,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(122,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(133,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(155,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(165,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(196,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(206,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(225,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\MainMenuPresenter.cpp(236,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Source.cpp
+  Tienda.cpp
+  Vendedor.cpp
+  Generating Code...
+  LINK : E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\Debug\QuarkCppFinal.exe not found or not built by the last incremental link; performing full link
   QuarkCppFinal.vcxproj -> E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\Debug\QuarkCppFinal.exe

@@ -246,33 +246,42 @@ void ProcesarPedidoPrenda(int& opcionMenu, bool& esStandard, int& precioPrenda, 
 
 	cout << "EXISTEN: " << prenda->getStock() << " UNIDADES EN STOCK DE LA PRENDA SELECCIONADA" << endl;
 
-	cout << "------------------------------------" << endl;
-	cout << "Número de identificación: " << idVendedor << endl;
-	cout << "Fecha y Hora de la cotización: " << menu->getFechaYHoradeCotizacion() << endl;
-	cout << "Código del vendedor: " << idVendedor << endl;
-
-
-
-	if (auto tipodePrenda = dynamic_cast<Camisa*>(prenda))
+	if (menu->getPrecioFinal() != -1)
 	{
-		cout << "Prenda cotizada: Camisa " << tipodePrenda->getTipoManga() << " " << tipodePrenda->getTipoCuello() << " " << endl;
+
+		cout << "------------------------------------" << endl;
+		cout << "Número de identificación: " << idVendedor << endl;
+		cout << "Fecha y Hora de la cotización: " << menu->getFechaYHoradeCotizacion() << endl;
+		cout << "Código del vendedor: " << idVendedor << endl;
+
+
+
+		if (auto tipodePrenda = dynamic_cast<Camisa*>(prenda))
+		{
+			cout << "Prenda cotizada: Camisa " << tipodePrenda->getTipoManga() << " " << tipodePrenda->getTipoCuello() << " " << endl;
+		}
+		if (auto tipodePrenda = dynamic_cast<Pantalon*>(prenda))
+		{
+			cout << "Prenda cotizada: Pantalon " << tipodePrenda->getTipoCorte() << " " << endl;
+		}
+
+		cout << "Precio unitario: $" << precioPrenda << endl;
+		cout << "Cantidad de unidades cotizadas:" << cantPrenda << endl;
+
+		//float precioFinal = menu->CrearCotizacion(prenda, cantPrenda, precioPrenda, cotizacionFinal);
+
+		cout << "Precio Final: $" << menu->getPrecioFinal() << endl;
+		cout << "------------------------------------" << endl;
+		cout << "Presiona cualquier tecla para volver al menú principal" << endl;
+		cout << "------------------------------------" << endl;
 	}
-	if (auto tipodePrenda = dynamic_cast<Pantalon*>(prenda))
+	else
 	{
-		cout << "Prenda cotizada: Pantalon " << tipodePrenda->getTipoCorte() << " " << endl;
+		cout << "No hay tanto stock" << endl;
+		cout << "Presiona cualquier tecla para volver al menú principal" << endl;
+		cout << "------------------------------------" << endl;
 	}
-
-	cout << "Precio unitario: $" << precioPrenda << endl;
-	cout << "Cantidad de unidades cotizadas:" << cantPrenda << endl;
-
-	//float precioFinal = menu->CrearCotizacion(prenda, cantPrenda, precioPrenda, cotizacionFinal);
-
-	cout << "Precio Final: $" << menu->getPrecioFinal() << endl;
-	cout << "------------------------------------" << endl;
-	cout << "Presiona 3 para volver al menú principal" << endl;
-	cout << "------------------------------------" << endl;
-
-	cin >> opcionMenu;
-
+	 opcionMenu = 3;
+	 _getch();
 	system("cls");
 }

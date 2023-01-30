@@ -254,7 +254,8 @@ float  MainMenuPresenter::CrearCotizacion(Prenda* prendaACotizar, int cantidadPr
 	
 	if (prendaACotizar->getStock() < cantidadPrendas)
 	{
-		cout << "NO HAY SUFICIENTE STOCK" << endl;
+		precioFinal = -1;
+		return precioFinal;
 	}
 	else
 	{
@@ -308,7 +309,7 @@ void MainMenuPresenter::MostrarHistorial(string listado)
 	for (auto cotizacion : historialCotizaciones)
 	{
 
-		cout << "\n " << cotizacion->getIdVendedor() << " Fecha: " << cotizacion->getFechaYHora() <<
+		cout << "\n ID:" << cotizacion->getIdVendedor() << " Fecha: " << cotizacion->getFechaYHoraDeVenta() <<
 			" Prenda: " << (dynamic_cast<Camisa*>(cotizacion->getTipoPrenda()) ? "CAMISA" : "PANTALON") <<  endl;
 	}
 

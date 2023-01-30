@@ -9,6 +9,7 @@ Cotizacion::Cotizacion(int idVendedor, Prenda* prendaCotizada, int cantPrendas)
 	this->idVendedor = idVendedor;
 	this->tipoPrenda = prendaCotizada;
 	this->cantPrendas = cantPrendas;
+	this->fechaYHora = getFechaYHora();
 }
 
 Cotizacion::~Cotizacion()
@@ -34,6 +35,12 @@ string Cotizacion::getFechaYHora()
 	return buf;
 
 }
+
+string Cotizacion::getFechaYHoraDeVenta()
+{
+	return fechaYHora;
+}
+
 
 int Cotizacion::getIdVendedor()
 {

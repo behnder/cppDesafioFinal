@@ -29,6 +29,7 @@ public:
 	Prenda* PrendaSeleccionada(bool esCamisa, bool esMangaCorta, bool esCuelloMao,
 		bool esChupin,int stock, bool esStandard, int precioPrenda,
 		int cantPrenda, float cotizacionFinal);
+
 	float CrearCotizacion(Prenda * prendaACotizar, int cantidadPrendas, float precio, float cotizacionFinal);
 	void MostrarHistorial(string listado);
 	string getFechaYHoradeCotizacion();
