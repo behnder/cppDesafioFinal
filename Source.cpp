@@ -39,7 +39,7 @@ int main() {
 
 
 
-	while (opcionMenu = 3)
+	while (opcionMenu == 3)
 	{
 
 
@@ -71,13 +71,14 @@ int main() {
 		case 1:
 			cout << "COTIZADOR EXPREESS - HISTORIAL DE COTIZACIONES" << endl;
 			cout << "------------------------------------" << endl;
-			cout << "Presiona 3 para volver al menú principal" << endl;
+			cout << "Presiona cualquier tecla para volver al menú principal" << endl;
 			cout << "------------------------------------" << endl;
 
 			menu->MostrarHistorial(cotizacionAImprimir);
 
 			_getch();
 			system("cls");
+			opcionMenu = 3;
 			break;
 		case 2:
 			cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
@@ -133,9 +134,7 @@ int main() {
 				}
 				else
 				{
-					cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
-					_getch();
-					system("cls");
+					OpcionMenuIncorrecto(opcionMenu);
 				}
 				break;
 			case 2:
@@ -161,15 +160,11 @@ int main() {
 				}
 				else
 				{
-					cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
-					_getch();
-					system("cls");
+					OpcionMenuIncorrecto(opcionMenu);
 				}
 				break;
 			default:
-				cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
-				_getch();
-				system("cls");
+				OpcionMenuIncorrecto(opcionMenu);
 
 				break;
 			}
@@ -181,9 +176,7 @@ int main() {
 			return 0;
 			break;
 		default:
-			cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
-			_getch();
-			system("cls");
+			OpcionMenuIncorrecto(opcionMenu);
 
 			break;
 		}
@@ -194,6 +187,26 @@ int main() {
 	_getch();
 
 	return 0;
+}
+
+void OpcionMenuIncorrecto(int& opcionMenu)
+{
+	if (cin.fail()) {
+		cout << "Entrada inválida. Por favor, ingrese un número." << endl;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		opcionMenu = 3;
+		_getch();
+		system("cls");
+	}
+	else
+	{
+		cout << "La opción es incorrecta, vuelva a ingresar la opción correcta" << endl;
+		opcionMenu = 3;
+		_getch();
+		system("cls");
+
+	}
 }
 
 void ProcesarPedidoPrenda(int& opcionMenu, bool& esStandard, int& precioPrenda, int& cantPrenda, MainMenuPresenter* menu, bool esCamisa, bool esMangaCorta, bool esCuelloMao, bool esChupin, int stock, float cotizacionFinal, int idVendedor)
