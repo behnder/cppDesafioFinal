@@ -15,8 +15,12 @@ string Prenda::getCalidad()
 	return calidad;
 }
 
-int* Prenda::getStock()
+int Prenda::getStock()
 {
 	return stock;
+}
+void Prenda::actualizarStock(int stock)
+{
+	 this->stock -= stock;
 }
 

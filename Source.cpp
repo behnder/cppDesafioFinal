@@ -7,6 +7,7 @@
 #include <chrono>
 #include <ctime>
 #include "Pantalon.h"
+#include "Source.h"
 
 using namespace std;
 
@@ -23,154 +24,180 @@ int main() {
 	string nombreVendedor = menu->getVendedor()->getNombre() + " " + menu->getVendedor()->getApellido();
 	int idVendedor = menu->getVendedor()->getIdVendedor();
 
-	bool esCamisa;
-	bool esMangaCorta;
-	bool esCuelloMao;
-	bool esChupin;
-	bool esStandard;
-	float cotizacionFinal;
+	bool esCamisa = false;
+	bool esMangaCorta = false;
+	bool esCuelloMao = false;
+	bool esChupin = false;
+	bool esStandard = false;
+	float cotizacionFinal = 0;
 
-	int precioPrenda;
-	int cantPrenda;
-	int* stock = new int();
+	int precioPrenda = 0;
+	int cantPrenda = 0;
+	int stock = 0;
 
-	int opcionMenu;
-
-	//Menu principal
-	cout << " COTIZADOR EXPRESS - MENÚ PRINCIPAL" << endl;
-	cout << "------------------------------------" << endl;
-	cout << nombreTienda << " | " << direccionTienda << endl;
-	cout << "------------------------------------" << endl;
-	cout << nombreVendedor << " | Vendedor Id nro: " << idVendedor << endl;
-	cout << "------------------------------------" << endl;
-	cout << "\n" << endl;
-	cout << "SELECCIONE UNA OPCIÓN DEL MENÚ" << endl;
-
-	cout << "\n" << endl;
-
-	cout << "1) Historial de Cotizaciones" << endl;
-	cout << "2) Realizar una cotización" << endl;
-	cout << "3) Salir" << endl;
-
-	cin >> opcionMenu;
-
-	system("cls");
+	int opcionMenu = 3;
 
 
-	string cotizacionAImprimir = "";
 
-	switch (opcionMenu)
+	while (opcionMenu = 3)
 	{
-	case 1:
-		//Historial de cotizaciones
-		cout << "COTIZADOR EXPREESS - HISTORIAL DE COTIZACIONES" << endl;
-		cout << "------------------------------------" << endl;
-		cout << "Presiona 3 para volver al menú principal" << endl;
-		cout << "------------------------------------" << endl;
-		menu->MostrarHistorial(cotizacionAImprimir);
-		cout << "Número de identificación: 000" << endl;
-		cout << "Fecha y Hora de la cotización" << endl;
-		cout << "Código del Vendedor: 000" << endl;
-		cout << "Prenda cotizada: Camisa - manga corta - premium" << endl;
-		cout << "Precio unitario: $xx.xx" << endl;
-		cout << "Cantidad de unidades cotizadas: 17" << endl;
-		cout << "Precio final: $xx.xx" << endl;
 
-		cin >> opcionMenu;
-		system("cls");
-		break;
-	case 2:
-		cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
+
+		//Menu principal
+		cout << " COTIZADOR EXPRESS - MENÚ PRINCIPAL" << endl;
 		cout << "------------------------------------" << endl;
-		cout << "Presiona 3 para volver al menú principal" << endl;
-		cout << "PASO 1: Selecciona la prenda a cotizar" << endl;
-		cout << "1) Camisa" << endl;
-		cout << "2) Pantalón" << endl;
+		cout << nombreTienda << " | " << direccionTienda << endl;
 		cout << "------------------------------------" << endl;
+		cout << nombreVendedor << " | Vendedor Id nro: " << idVendedor << endl;
+		cout << "------------------------------------" << endl;
+		cout << "\n" << endl;
+		cout << "SELECCIONE UNA OPCIÓN DEL MENÚ" << endl;
+
+		cout << "\n" << endl;
+
+		cout << "1) Historial de Cotizaciones" << endl;
+		cout << "2) Realizar una cotización" << endl;
+		cout << "3) Salir" << endl;
 
 		cin >> opcionMenu;
 
 		system("cls");
+
+
+		string cotizacionAImprimir = "";
 
 		switch (opcionMenu)
 		{
 		case 1:
-			esCamisa = true;
+			cout << "COTIZADOR EXPREESS - HISTORIAL DE COTIZACIONES" << endl;
+			cout << "------------------------------------" << endl;
+			cout << "Presiona 3 para volver al menú principal" << endl;
+			cout << "------------------------------------" << endl;
+
+			menu->MostrarHistorial(cotizacionAImprimir);
+
+			_getch();
+			system("cls");
+			break;
+		case 2:
 			cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
 			cout << "------------------------------------" << endl;
 			cout << "Presiona 3 para volver al menú principal" << endl;
-			cout << "Paso 2.a: La camisa a cotizar, ¿Es Manga corta?" << endl;
-			cout << "1) Sí" << endl;
-			cout << "2) No" << endl;
+			cout << "PASO 1: Selecciona la prenda a cotizar" << endl;
+			cout << "1) Camisa" << endl;
+			cout << "2) Pantalón" << endl;
 			cout << "------------------------------------" << endl;
 
 			cin >> opcionMenu;
-
-			esMangaCorta = opcionMenu == 1 ? true : false;
 
 			system("cls");
 
 			switch (opcionMenu)
 			{
 			case 1:
-				esMangaCorta = true;
+
+				esCamisa = true;
 				cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
 				cout << "------------------------------------" << endl;
 				cout << "Presiona 3 para volver al menú principal" << endl;
-				cout << "Paso 2.b: La camisa a cotizar, ¿Es Cuello Mao?" << endl;
+				cout << "Paso 2.a: La camisa a cotizar, ¿Es Manga corta?" << endl;
 				cout << "1) Sí" << endl;
 				cout << "2) No" << endl;
 				cout << "------------------------------------" << endl;
 
 				cin >> opcionMenu;
-				
-				esCuelloMao = opcionMenu == 1 ? true : false;
+				system("cls");
+				if (opcionMenu > 0 && opcionMenu < 3)
+				{
+					esMangaCorta = opcionMenu == 1 ? true : false;
+
+					system("cls");
+
+					cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
+					cout << "------------------------------------" << endl;
+					cout << "Presiona 3 para volver al menú principal" << endl;
+					cout << "Paso 2.b: La camisa a cotizar, ¿Es Cuello Mao?" << endl;
+					cout << "1) Sí" << endl;
+					cout << "2) No" << endl;
+					cout << "------------------------------------" << endl;
+
+
+					cin >> opcionMenu;
+
+					esCuelloMao = opcionMenu == 1 ? true : false;
+
+					system("cls");
+
+					ProcesarPedidoPrenda(opcionMenu, esStandard, precioPrenda, cantPrenda, menu, esCamisa,
+						esMangaCorta, esCuelloMao, esChupin, stock, cotizacionFinal, idVendedor);
+				}
+				else
+				{
+					cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
+					_getch();
+					system("cls");
+				}
+				break;
+			case 2:
+
+				esCamisa = false;
+				cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
+				cout << "------------------------------------" << endl;
+				cout << "Presiona 3 para volver al menú principal" << endl;
+				cout << "Paso 2: El Pantalón a cotizar, ¿Es chupín?" << endl;
+				cout << "1) Sí" << endl;
+				cout << "2) No" << endl;
+				cout << "------------------------------------" << endl;
+
+				cin >> opcionMenu;
 
 				system("cls");
+				if (opcionMenu > 0 && opcionMenu < 3)
+				{
+					esChupin = opcionMenu == 1 ? true : false;
 
+					ProcesarPedidoPrenda(opcionMenu, esStandard, precioPrenda, cantPrenda, menu, esCamisa,
+						esMangaCorta, esCuelloMao, esChupin, stock, cotizacionFinal, idVendedor);
+				}
+				else
+				{
+					cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
+					_getch();
+					system("cls");
+				}
 				break;
 			default:
+				cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
+				_getch();
+				system("cls");
+
 				break;
 			}
 
 			break;
-		case 2:
-			esCamisa = false;
-			cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
-			cout << "------------------------------------" << endl;
-			cout << "Presiona 3 para volver al menú principal" << endl;
-			cout << "Paso 2: El Pantalón a cotizar, ¿Es chupín?" << endl;
-			cout << "1) Sí" << endl;
-			cout << "2) No" << endl;
-			cout << "------------------------------------" << endl;
 
-			cin >> opcionMenu;
-
-			system("cls");
-
-			esChupin = opcionMenu == 1 ? true : false;
-
-			break;
 		case 3:
 			cout << "Adios" << endl;
 			return 0;
 			break;
 		default:
+			cout << "La opción es incorrecta, vuelva a ingresar la opción correecta" << endl;
+			_getch();
+			system("cls");
+
 			break;
 		}
 
-		break;
 
-	case 3:
-		cout << "Adios" << endl;
-		return 0;
-		break;
-	default:
-		break;
 	}
 
+	_getch();
 
+	return 0;
+}
 
+void ProcesarPedidoPrenda(int& opcionMenu, bool& esStandard, int& precioPrenda, int& cantPrenda, MainMenuPresenter* menu, bool esCamisa, bool esMangaCorta, bool esCuelloMao, bool esChupin, int stock, float cotizacionFinal, int idVendedor)
+{
 	cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
 	cout << "------------------------------------" << endl;
 	cout << "Presiona 3 para volver al menú principal" << endl;
@@ -197,52 +224,37 @@ int main() {
 	cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
 	cout << "------------------------------------" << endl;
 	cout << "Presiona 3 para volver al menú principal" << endl;
-	cout << "\n" << endl;
-	cout << "INFORMACIÓN:" << endl;
-	cout << "EXISTE x CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA" << endl;
-	cout << "\n" << endl;
+	cout << "------------------------------------" << endl;
 	cout << "PASO 5: Ingrese la cantidad de unidades a cotizar" << endl;
-	cin >> opcionMenu;
+	cin >> cantPrenda;
 	cout << "------------------------------------" << endl;
 
-	cin >> opcionMenu;
+	Prenda* prenda = menu->PrendaSeleccionada(esCamisa, esMangaCorta, esCuelloMao, esChupin, stock, esStandard, precioPrenda, cantPrenda, cotizacionFinal);
 
-	system("cls");
+	cout << "EXISTEN: " << prenda->getStock() << " UNIDADES EN STOCK DE LA PRENDA SELECCIONADA" << endl;
 
-
-	Prenda *prenda = menu->PrendaSeleccionada(esCamisa, esMangaCorta, esCuelloMao, esChupin, stock, esStandard, precioPrenda, cantPrenda, cotizacionFinal);
-
-
-	cout << "COTIZADOR EXPREESS - COTIZAR" << endl;
-	cout << "------------------------------------" << endl;
-	cout << "Presiona 3 para volver al menú principal" << endl;
 	cout << "------------------------------------" << endl;
 	cout << "Número de identificación: " << idVendedor << endl;
-	std::time_t now = std::time(nullptr);
-	std::tm* local_time = std::localtime(&now);
-	cout << "Fecha y Hora de la cotización: 1" << local_time->tm_mday << endl;
+	cout << "Fecha y Hora de la cotización: " << menu->getFechaYHoradeCotizacion() << endl;
 	cout << "Código del vendedor: " << idVendedor << endl;
 
 
 
 	if (auto tipodePrenda = dynamic_cast<Camisa*>(prenda))
 	{
-		
 		cout << "Prenda cotizada: Camisa " << tipodePrenda->getTipoManga() << " " << tipodePrenda->getTipoCuello() << " " << endl;
 	}
 	if (auto tipodePrenda = dynamic_cast<Pantalon*>(prenda))
 	{
-		cout << "Prenda cotizada: Camisa " << tipodePrenda->getTipoCorte() << " "<< endl;
-
+		cout << "Prenda cotizada: Pantalon " << tipodePrenda->getTipoCorte() << " " << endl;
 	}
 
 	cout << "Precio unitario: $" << precioPrenda << endl;
-	cout << "Cantidad de unidades cotizadas:"<< cantPrenda << endl;
+	cout << "Cantidad de unidades cotizadas:" << cantPrenda << endl;
 
-	menu->CrearCotizacion(prenda, cantPrenda, precioPrenda, cotizacionFinal);
+	//float precioFinal = menu->CrearCotizacion(prenda, cantPrenda, precioPrenda, cotizacionFinal);
 
-	cout << "Precio Final: $xx,xx" << endl;
-	cin >> opcionMenu;
+	cout << "Precio Final: $" << menu->getPrecioFinal() << endl;
 	cout << "------------------------------------" << endl;
 	cout << "Presiona 3 para volver al menú principal" << endl;
 	cout << "------------------------------------" << endl;
@@ -250,9 +262,4 @@ int main() {
 	cin >> opcionMenu;
 
 	system("cls");
-
-	_getch();
-
-	delete stock;
-	return 0;
 }

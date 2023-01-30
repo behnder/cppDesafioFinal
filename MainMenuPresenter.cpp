@@ -29,10 +29,11 @@ void MainMenuPresenter::InicializarDatos()
 }
 
 Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, bool esCuelloMao,
-	bool esChupin, int* stock, bool esStandard, int precioPrenda,
+	bool esChupin, int stock, bool esStandard, int precioPrenda,
 	int cantPrenda, float cotizacionFinal)
 {
-	Prenda* prendaCotizada;
+
+	Prenda* prendaCotizada = nullptr;
 	auto prendas = tienda->getPrendas();
 	if (esCamisa)
 	{
@@ -111,37 +112,28 @@ Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, 
 
 				}
 				//si NO tildo  manga corta Y NO TILDO cuello comun)
-				if (!esCuelloMao && !esMangaCorta)
+				if (!esCuelloMao && !esMangaCorta && esStandard)
 				{
-
 					//selecciono manga larga  y cuello comun
-					if (camisa->getTipoManga() == "larga" && camisa->getTipoCuello() == "comun")
+					if (camisa->getTipoManga() == "larga" && camisa->getTipoCuello() == "comun" && camisa->getCalidad() == "Standard")
 					{
+						stock = camisa->getStock();
+						prendaCotizada = camisa;
+						CrearCotizacion(camisa, cantPrenda, precioPrenda, cotizacionFinal);
 
-						if (esStandard)
-						{
-							if (camisa->getCalidad() == "Standard")
-							{
-								stock = camisa->getStock();
-								prendaCotizada = camisa;
-								CrearCotizacion(camisa, cantPrenda, precioPrenda, cotizacionFinal);
-							}
-
-						}
-						else if (!esStandard)
-						{
-							if (camisa->getCalidad() == "Premium")
-							{
-								stock = camisa->getStock();
-								prendaCotizada = camisa;
-								CrearCotizacion(camisa, cantPrenda, precioPrenda, cotizacionFinal);
-							}
-
-						}
 					}
 
 				}
+				else if (!esCuelloMao && !esMangaCorta && !esStandard)
+				{
+					if (camisa->getTipoManga() == "larga" && camisa->getTipoCuello() == "comun" && camisa->getCalidad() == "Premium")
+					{
+						stock = camisa->getStock();
+						prendaCotizada = camisa;
+						CrearCotizacion(camisa, cantPrenda, precioPrenda, cotizacionFinal);
+					}
 
+				}
 
 
 
@@ -156,7 +148,7 @@ Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, 
 
 						if (esStandard)
 						{
-							if (camisa->getCalidad() == "Standard")
+							if (prenda->getCalidad() == "Standard")
 							{
 								stock = camisa->getStock();
 								prendaCotizada = camisa;
@@ -166,7 +158,7 @@ Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, 
 						}
 						else if (!esStandard)
 						{
-							if (camisa->getCalidad() == "Premium")
+							if (prenda->getCalidad() == "Premium")
 							{
 								stock = camisa->getStock();
 								prendaCotizada = camisa;
@@ -201,9 +193,9 @@ Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, 
 							if (pantalon->getCalidad() == "Standard")
 							{
 
+								CrearCotizacion(pantalon, cantPrenda, precioPrenda, cotizacionFinal);
 								stock = pantalon->getStock();
 								prendaCotizada = pantalon;
-								CrearCotizacion(pantalon, cantPrenda, precioPrenda, cotizacionFinal);
 							}
 						}
 						else if (!esStandard)
@@ -211,9 +203,9 @@ Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, 
 							if (pantalon->getCalidad() == "Premium")
 							{
 
+								CrearCotizacion(pantalon, cantPrenda, precioPrenda, cotizacionFinal);
 								stock = pantalon->getStock();
 								prendaCotizada = pantalon;
-								CrearCotizacion(pantalon, cantPrenda, precioPrenda, cotizacionFinal);
 
 							}
 						}//-
@@ -242,6 +234,7 @@ Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, 
 								stock = pantalon->getStock();
 								prendaCotizada = pantalon;
 								CrearCotizacion(pantalon, cantPrenda, precioPrenda, cotizacionFinal);
+
 							}
 
 
@@ -258,13 +251,14 @@ Prenda* MainMenuPresenter::PrendaSeleccionada(bool esCamisa, bool esMangaCorta, 
 
 float  MainMenuPresenter::CrearCotizacion(Prenda* prendaACotizar, int cantidadPrendas, float precio, float cotizacionFinal)
 {
-;
-	if (*prendaACotizar->getStock() < cantidadPrendas)
+	
+	if (prendaACotizar->getStock() < cantidadPrendas)
 	{
-		cout << "NO HAY SUIFICIENTE STOCK" << endl;
+		cout << "NO HAY SUFICIENTE STOCK" << endl;
 	}
 	else
 	{
+		prendaACotizar->actualizarStock(cantidadPrendas);
 		if (auto camisa = dynamic_cast<Camisa*>(prendaACotizar))
 		{
 
@@ -299,12 +293,12 @@ float  MainMenuPresenter::CrearCotizacion(Prenda* prendaACotizar, int cantidadPr
 
 
 		historialCotizaciones.push_back(new Cotizacion(this->vendedor->getIdVendedor(), prendaACotizar, cantidadPrendas));
-		cotizacionFinal = (cantidadPrendas * precio);
+		precioFinal = (cantidadPrendas * precio);
 
 
 	}
 
-	return cotizacionFinal;
+	return precioFinal;
 
 }
 
@@ -314,9 +308,23 @@ void MainMenuPresenter::MostrarHistorial(string listado)
 	for (auto cotizacion : historialCotizaciones)
 	{
 
-		cout << "\n " << cotizacion->getIdVendedor() << " Fecha: " << cotizacion->getFechaYHora() << 
-			" Prenda: " << (dynamic_cast<Camisa*>(cotizacion->getTipoPrenda()) ? "CAMISA" : "PANTALON") << "PRUEBA" << endl;
+		cout << "\n " << cotizacion->getIdVendedor() << " Fecha: " << cotizacion->getFechaYHora() <<
+			" Prenda: " << (dynamic_cast<Camisa*>(cotizacion->getTipoPrenda()) ? "CAMISA" : "PANTALON") <<  endl;
 	}
+
+}
+
+string MainMenuPresenter::getFechaYHoradeCotizacion()
+{
+	string fechaCotizacion;
+	auto now = std::chrono::system_clock::now();
+	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+	char buf[26];
+
+	std::tm tm;
+	localtime_s(&tm, &now_c);
+	std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
+	return buf;
 
 }
 
@@ -328,4 +336,14 @@ Tienda* MainMenuPresenter::getTienda()
 Vendedor* MainMenuPresenter::getVendedor()
 {
 	return vendedor;
+}
+
+float MainMenuPresenter::getPrecioFinal()
+{
+	return precioFinal;
+}
+
+int MainMenuPresenter::getStock()
+{
+	return stock;
 }

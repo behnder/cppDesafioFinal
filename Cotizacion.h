@@ -13,7 +13,6 @@ class Cotizacion
 {
 private:
 	int idCotizacion=0;
-	string fechaYHora;
 	int idVendedor;
 	Prenda* tipoPrenda;
 	int cantPrendas;

@@ -154,6 +154,7 @@
     <ClInclude Include="MainMenuPresenter.h" />
     <ClInclude Include="Pantalon.h" />
     <ClInclude Include="Prenda.h" />
+    <ClInclude Include="Source.h" />
     <ClInclude Include="Tienda.h" />
     <ClInclude Include="Vendedor.h" />
   </ItemGroup>

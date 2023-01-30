@@ -24,7 +24,7 @@ void Tienda::CargarCamisas()
 	//Camisas Manga Larga
 	listaPrendas.push_back(make_shared<Camisa>("Standard", 75, "larga", "mao"));
 	listaPrendas.push_back(make_shared<Camisa>("Premium", 75, "larga", "mao"));
-	listaPrendas.push_back(make_shared<Camisa>("Standard", 175, "corta", "comun"));
+	listaPrendas.push_back(make_shared<Camisa>("Standard", 175, "larga", "comun"));
 	listaPrendas.push_back(make_shared<Camisa>("Premium", 175, "larga", "comun"));
 }
 

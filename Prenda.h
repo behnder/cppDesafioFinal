@@ -10,12 +10,13 @@ class Prenda
 private:
 	string calidad;
 	int precioUnitario;
-	int* stock = new int();
+	int stock;
 public:
 	Prenda(string calidad, int stock);
 	virtual ~Prenda();
 	string getCalidad();
-	int* getStock();
+	int getStock();
+	void actualizarStock(int stock);
 	
 };
 

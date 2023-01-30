@@ -1,1 +1,2 @@
 E:\Cprojects\QuarkExamenFinal\QuarkCppFinal\Debug\QuarkCppFinal.exe
+E:\Cprojects\QuarkExamenFinal\cppDesafioFinal\Debug\QuarkCppFinal.exe

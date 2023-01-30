@@ -1,9 +1,11 @@
 #include "Cotizacion.h"
+#include <chrono>
+#include <ctime>
+using namespace std;
 
 Cotizacion::Cotizacion(int idVendedor, Prenda* prendaCotizada, int cantPrendas)
 {
 	this->idCotizacion++;
-	this->fechaYHora = "01/01/2030";
 	this->idVendedor = idVendedor;
 	this->tipoPrenda = prendaCotizada;
 	this->cantPrendas = cantPrendas;
@@ -21,7 +23,16 @@ int Cotizacion::getIdCotizacion()
 
 string Cotizacion::getFechaYHora()
 {
-	return fechaYHora;
+	string fechaCotizacion;
+	auto now = std::chrono::system_clock::now();
+	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+	char buf[26];
+
+	std::tm tm;
+	localtime_s(&tm, &now_c);
+	std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
+	return buf;
+
 }
 
 int Cotizacion::getIdVendedor()
